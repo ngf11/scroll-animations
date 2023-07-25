@@ -1,0 +1,45 @@
+https://www.youtube.com/watch?v=T33NN_pPeNI
+
+One way to add add animation on scroll by using this new css feture @scroll-timeline
+Is a new css is @ rule similar to a media query
+It intigrates with animation timeline from the web animations API
+
+This asllows you apply css animations where the position of the scroll-bar
+But this is not supported by any browsers
+
+What we can use is intersection observer.
+
+to bring in the intersection observer.
+we need to identify an elemet in the DOM we want to observer.
+this will be a lot easer with a frame work.
+But with vanilla JS we can give each element a class.
+class= "hidden"
+
+if your go to your JS and grab them all byt using document.qurryselectorAll()
+
+The next step is to creat the intersection observer.
+
+This is a class that takes a callBack function in its constrator
+the cool thing about is that can observer multiple elements or enteries at the same time. This function will run once the vesability of an observe elements changes.
+
+Because it handels multiple enteries we need to use a foreach loop over them. then we can run a simple conditional check console.log() to see if that entry is intersection a point or not 
+if it is intersecting we wil add a class name "show"
+if you want to show the animation once you can stop here.
+you will also wan to re move the class "show"
+
+const elementHidden = document.querySelectorAll(".hidden");
+const observer = new IntersectionObserver((enteries)=>{
+    enteries.forEach((entry)=>{
+        console.log(entry)
+        if(entry.isIntersecting){
+            entry.target.classList.add('show')
+        }else{
+            entry.target.classList.remove('show')
+        }
+    })
+})
+
+Now that we have the observer.
+we need to tell it what to observe
+
+elementHidden.forEach((el) => observer.observe(el));
